@@ -28,7 +28,7 @@
                         "contextOut" => array()
                     ));
                 }*/
-                else{
+                //else{
                     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                         $pLevel = $row["paperlevel"];
                         $pCode = $row["papercode"];

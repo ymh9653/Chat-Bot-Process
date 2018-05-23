@@ -55,7 +55,7 @@
                     
                 }  
             }
-        }
+        //}
         
         function sendMessage($parameters) {
             echo json_encode($parameters);

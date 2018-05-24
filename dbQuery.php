@@ -28,7 +28,7 @@
                         "contextOut" => array()
                     ) );
                 }
-
+            }
         
         function sendMessage($parameters) {
             echo json_encode($parameters);
@@ -39,4 +39,5 @@
         if (isset($request["result"]["action"])) {
             processMessage($request);
         }
+    
 ?>

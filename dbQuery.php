@@ -4,13 +4,13 @@
         
                 $db = new PDO($dbString); 
                 
-                if ($request["result"]["action"] == "DBLink" ) {
-                    $papercode = $request["result"]["parameters"]["paper1"];
+                if ($request["queryResult"]["action"] == "DBLink" ) {
+                    $papercode = $request["queryResult"]["parameters"]["paper1"];
                     
                     $query = "SELECT * FROM papers WHERE papercode LIKE '%$papercode'";
                     $dbres = $db->query($query);
 
-                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    while ($row = $queryResult->fetch(PDO::FETCH_ASSOC)) {
                         $pLevel = $row["paperlevel"];
                         $pCode = $row["papercode"];
                         $pName = $row["papername"];
@@ -21,12 +21,20 @@
 
                     $result->closeCursor();
 
-                    sendMessage( array (
-                        "source" => $update["result"]["source"],
-                        "speech" => $pName . ", worth " . $pPoints . " points",
-                        "displayText" => $pName . ", worth " . $pPoints . " points",
-                        "contextOut" => array()
-                    ) );
+                    $speech = $pName . ", worth " . $pPoints . " points";
+                    $text = $pName . ", worth " . $pPoints . " points";
+
+                    $response = new \stdClass();
+                    $response->speech = $speech;
+                    $response->displayText = $text;
+                    $response->source = $update["queryResult"]["source"];
+                    sendMessage ()
+                    // sendMessage( array (
+                    //     "source" => $update["queryResult"]["source"],
+                    //     "speech" => $pName . ", worth " . $pPoints . " points",
+                    //     "displayText" => $pName . ", worth " . $pPoints . " points",
+                    //     "contextOut" => array()
+                    // ) );
                 }
             }
         
@@ -36,7 +44,7 @@
         
         $request_response = file_get_contents("php://input");
         $request = json_decode($request_response, true);
-        if (isset($request["result"]["action"])) {
+        if (isset($request["queryResult"]["action"])) {
             processMessage($request);
         }
     

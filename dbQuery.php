@@ -28,7 +28,7 @@
                     $response->speech = $speech;
                     $response->displayText = $text;
                     $response->source = $update["queryResult"]["source"];
-                    sendMessage ()
+                    sendMessage($response);
                     // sendMessage( array (
                     //     "source" => $update["queryResult"]["source"],
                     //     "speech" => $pName . ", worth " . $pPoints . " points",

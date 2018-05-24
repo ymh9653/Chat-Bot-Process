@@ -6,7 +6,7 @@
                         . "user=ytchabybvuaeog;"
                         . "port=5432;"
                         . "sslmode=require;"
-                        . "password=f457e5a75151626f6a23493485673b3ea75595a7dcbcfd3b7994fc9d7f1e53d";
+                        . "password=f457e5a75151626f6a23493485673b3ea75595a7dcbcfd3b7994fc9d7f1e53d5";
                 $db = new PDO($dbString); 
                 
                 if ($request["queryResult"]["action"] == "DBLink" ) {

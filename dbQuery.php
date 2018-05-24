@@ -1,7 +1,12 @@
 <?php
-    function processMessage($request) { 
-            $dbString = "postgres://ytchabybvuaeog:f457e5a75151626f6a23493485673b3ea75595a7dcbcfd3b7994fc9d7f1e53d5@ec2-54-235-66-24.compute-1.amazonaws.com:5432/d5tfc77ecvjh96"            ;
-        
+    function processMessage($request) {         
+            $dbString = "pgsql:"
+                        . "host=ec2-54-235-66-24.compute-1.amazonaws.com;"
+                        . "dbname=d5tfc77ecvjh96;"
+                        . "user=ytchabybvuaeog;"
+                        . "port=5432;"
+                        . "sslmode=require;"
+                        . "password=f457e5a75151626f6a23493485673b3ea75595a7dcbcfd3b7994fc9d7f1e53d";
                 $db = new PDO($dbString); 
                 
                 if ($request["queryResult"]["action"] == "DBLink" ) {

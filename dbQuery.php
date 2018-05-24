@@ -25,7 +25,7 @@
                         $pPres = $row["paperpros"];
                     }
 
-                    $result->closeCursor();
+                    $dbres->closeCursor();
 
                     $speech = $pName . ", worth " . $pPoints . " points";
                     $text = $pName . ", worth " . $pPoints . " points";

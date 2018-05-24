@@ -15,6 +15,7 @@
                     $query = "SELECT * FROM papers WHERE papercode LIKE '%$papercode'";
                     $dbres = $db->query($query);
 
+                    $pLevel, $pCode, $pName, $pPoints, $pCos, $pPres = "default";
                     while ($row = $queryResult->fetch(PDO::FETCH_ASSOC)) {
                         $pLevel = $row["paperlevel"];
                         $pCode = $row["papercode"];

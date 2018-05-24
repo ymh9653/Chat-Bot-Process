@@ -16,7 +16,7 @@
                     $dbres = $db->query($query);
 
                     $pLevel = $pCode = $pName = $pPoints = $pCos = $pPres = "default";
-                    while ($row = $request->fetch(PDO::FETCH_ASSOC)) {
+                    while ($row = $dbres->fetch(PDO::FETCH_ASSOC)) {
                         $pLevel = $row["paperlevel"];
                         $pCode = $row["papercode"];
                         $pName = $row["papername"];

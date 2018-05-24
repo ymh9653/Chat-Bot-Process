@@ -31,8 +31,7 @@
                     $text = $pName . ", worth " . $pPoints . " points";
 
                     $response = new \stdClass();
-                    $response->speech = $speech;
-                    $response->displayText = $text;
+                    $response->fulfillmentText = $text;
                     $response->source = $update["queryResult"]["source"];
                     sendMessage($response);
                     // sendMessage( array (

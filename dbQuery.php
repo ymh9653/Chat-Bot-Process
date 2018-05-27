@@ -112,7 +112,7 @@
                             break;
                     }
 
-                    $query = "SELECT * FROM papers WHERE ".$dbMajor." = true";
+                    $query = "SELECT * FROM papers WHERE '".$dbMajor."' = true";
                     $dbres = $db->query($query);
 
                     $pName = array();

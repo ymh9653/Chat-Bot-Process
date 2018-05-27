@@ -93,26 +93,26 @@
 
                     switch ($major) {
                         case "Software Development" :
-                            $query = "SELECT * FROM papers WHERE 'isSD' = true";
+                            $dbMajor = "isSD";
                             break;
                         case "IT Service Science" :
-                            $query = "SELECT * FROM papers WHERE 'isITSS' = true";
+                            $dbMajor = "isITSS";
                             break;
                         case "Computer Science" :
-                            $query = "SELECT * FROM papers WHERE 'isCS' = true";
+                            $dbMajor = "isCS";
                             break;
                         case "Analytics" :                                
-                            $query = "SELECT * FROM papers WHERE \"isAL\" = true";
+                            $dbMajor = "isAL";
                             break;
                         case "Computational Intelligence" :                               
-                            $query = "SELECT * FROM papers WHERE 'isCI' = true";
+                            $dbMajor = "isCI";
                             break;
                         case "Networds and Security" :                               
-                            $query = "SELECT * FROM papers WHERE 'isNS' = true";
+                            $dbMajor = "isNS";
                             break;
                     }
 
-                    
+                    $query = "SELECT * FROM papers WHERE \"$dbMajor\" = true";
                     $dbres = $db->query($query);
 
                     $pName = array();

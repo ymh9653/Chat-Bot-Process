@@ -113,7 +113,8 @@
                     }
 
                     $query = "SELECT * FROM papers WHERE '$dbMajor' = TRUE";
-
+                    $dbres = $db->query($query);
+                    
                     $pName = array();
                     $pCode = array();
 
@@ -121,7 +122,7 @@
                         array_push($pName, $row["papercode"]);
                         array_push($pCode, $row["papername"]);
                     }
-                    echo $pName;
+                    console.log($pName);
                     $dbres->closeCursor();
 
                     $text = "";

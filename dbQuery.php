@@ -88,29 +88,29 @@
 
                     $presText = processPres($pPres);
                     
-                    $text = $pName . "is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. ".$presText ;
+                    $text = $pName . "is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. ".$presText;
 
                 } else if ($request["queryResult"]["action"] == "DBMajor") {
                     $major = $request["queryResult"]["parameters"]["major1"];
 
                     switch ($major) {
                         case "Software Development" :
-                            $dbMajor = "isSD"
+                            $dbMajor = "isSD";
                             break;
                         case "IT Service Science" :
-                            $dbMajor = "isITSS"
+                            $dbMajor = "isITSS";
                             break;
                         case "Computer Science" :
-                            $dbMajor = "isCS"
+                            $dbMajor = "isCS";
                             break;
                         case "Analytics" :                                
-                            $dbMajor = "isAL"
+                            $dbMajor = "isAL";
                             break;
                         case "Computational Intelligence" :                               
-                            $dbMajor = "isCI"
+                            $dbMajor = "isCI";
                             break;
                         case "Networds and Security" :                               
-                            $dbMajor = "isNS"
+                            $dbMajor = "isNS";
                             break;
                     }
 

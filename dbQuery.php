@@ -139,7 +139,7 @@
                     }
 
                     $text .= " Click here to learn more about it: https://www.aut.ac.nz/study/study-options/engineering-computer-and-mathematical-sciences/courses/"
-                    ."bachelor-of-computer-and-information-sciences/".$dbMajor."-major"
+                    ."bachelor-of-computer-and-information-sciences/".$dbMajor."-major";
 
                     $query = "SELECT * FROM papers WHERE \"$dbMajor\" = true";
                     $dbres = $db->query($query);

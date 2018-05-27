@@ -85,32 +85,11 @@
 
 
 
-                    $text = $pName . " is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. "
+                    $text = $pCode .": ". $pName . " is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. "
                                         .$presText.$coText.$lectText;
 
                     
 
-                } else if ($request["queryResult"]["action"] == "DBPaper" ) {
-                    $papercode = $request["queryResult"]["parameters"]["paper1"];
-                    
-                    $query = "SELECT * FROM papers WHERE papername LIKE '%$papername'";
-                    $dbres = $db->query($query);
-
-                    $pLevel = $pCode = $pName = $pPoints = $pCos = $pPres = "default";
-                    while ($row = $dbres->fetch(PDO::FETCH_ASSOC)) {
-                        $pLevel = $row["paperlevel"];
-                        $pCode = $row["papercode"];
-                        $pName = $row["papername"];
-                        $pPoints = $row["paperpoints"];
-                        $pCos = $row["papercos"];
-                        $pPres = $row["paperpres"];
-                    }
-
-                    $dbres->closeCursor();
-
-                    $presText = processPres($pPres);
-                    
-                    $text = $pCode. ": ". $pName . " is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. ".$presText;
 
                 } else if ($request["queryResult"]["action"] == "DBMajor") {
                     $major = $request["queryResult"]["parameters"]["Major1"];

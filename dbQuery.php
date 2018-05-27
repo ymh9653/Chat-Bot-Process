@@ -83,6 +83,8 @@
                     $coText = processCos($pCos);
                     $lectText = processLecturer($pTutor);
 
+
+
                     $text = $pName . " is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. "
                                         .$presText.$coText.$lectText;
 
@@ -108,7 +110,7 @@
 
                     $presText = processPres($pPres);
                     
-                    $text = $pName . " is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. ".$presText;
+                    $text = $pCode. ": ". $pName . " is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. ".$presText;
 
                 } else if ($request["queryResult"]["action"] == "DBMajor") {
                     $major = $request["queryResult"]["parameters"]["Major1"];
@@ -151,8 +153,6 @@
 
                     $text .= " Click here to learn more about it: https://www.aut.ac.nz/study/study-options/engineering-computer-and-mathematical-sciences/courses/"
                     ."bachelor-of-computer-and-information-sciences/".$dbMajor."-major";
-
-
                 }
 
 

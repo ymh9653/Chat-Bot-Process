@@ -103,12 +103,12 @@
                     $major = $request["queryResult"]["parameters"]["Major1"];
 
                     switch ($major) {
-                        case "Software Development" :
+                        case "Software development" :
                             $dbMajor = "software-development";
                             $text = "Do you love to code? Do you want to design and develop new software?"
                             ."Then you shouldn't look any further than majoring in Software Development!";
                             break;
-                        case "IT Service Science" :
+                        case "IT service Science" :
                             $dbMajor = "it-service-science";
                             $text = "If you want to help the world by producing solutions for Information "
                             ."Technology, then IT Service Science just might be the place for you. You should "

@@ -102,7 +102,7 @@
                             $query = "SELECT * FROM papers WHERE 'isCS' = true";
                             break;
                         case "Analytics" :                                
-                            $query = "SELECT * FROM papers WHERE 'isAL' = true";
+                            $query = "SELECT * FROM papers WHERE \"isAL\" = true";
                             break;
                         case "Computational Intelligence" :                               
                             $query = "SELECT * FROM papers WHERE 'isCI' = true";

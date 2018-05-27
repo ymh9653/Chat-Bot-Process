@@ -92,7 +92,7 @@
                     $major = $request["queryResult"]["parameters"]["Major1"];
 
                     switch ($major) {
-                        case "Software Development" :
+                        case "Software development" :
                             $dbMajor = "isSD";
                             break;
                         case "IT Service Science" :
@@ -128,7 +128,7 @@
                     $text = "";
                     for($x = 0; $x < sizeof($pName); $x++) {
                         $text .= $pCode[$x] . " ";
-                        $text .= $pName[$x] . " <br>";
+                        $text .= $pName[$x] . " \n";
                     }
                 }
 

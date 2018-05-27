@@ -128,7 +128,7 @@
                     $text = "";
                     for($x = 0; $x < sizeof($pName); $x++) {
                         $text .= $pCode[$x] . " ";
-                        $text .= $pName[$x] . " </br>";
+                        $text .= $pName[$x] . " "."\n";
                     }
                 }
 

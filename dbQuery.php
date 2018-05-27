@@ -34,6 +34,14 @@
         return $presText;
     }
 
+    function processLecturer($string) {
+        if ($string == "N/A") {
+            return null;
+        } else {
+            return " It's taught by " . $string ."!";
+        }
+    }
+
     function processMessage($request) {         
             $dbString = "pgsql:"
                         . "host=ec2-54-235-66-24.compute-1.amazonaws.com;"
@@ -58,13 +66,16 @@
                         $pPoints = $row["paperpoints"];
                         $pCos = $row["papercos"];
                         $pPres = $row["paperpres"];
+                        $pTutor = $row["papertutor"];
                     }
 
                     $dbres->closeCursor();
 
                     $presText = processPres($pPres);
                     
-                    $text = $pName . " is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. ".$presText ;
+                    $text = $pName . " is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. ".$presText. processLecturer($pTutor);
+
+                    
 
                 } else if ($request["queryResult"]["action"] == "DBPaper" ) {
                     $papercode = $request["queryResult"]["parameters"]["paper1"];
@@ -121,8 +132,8 @@
                             break;
                         case "Networks and Security" :                               
                             $dbMajor = "networks-and-security";
-                            $text = "Are you intrigued by the concepts of Networking and Security? Then you ".
-                            ."should take part in helping build the network infrastructure and security levels ".
+                            $text = "Are you intrigued by the concepts of Networking and Security? Then you "
+                            ."should take part in helping build the network infrastructure and security levels "
                             ."of our world!";
                             break;
                     }

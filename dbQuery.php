@@ -34,6 +34,14 @@
         return $presText;
     }
 
+    function processCos($string) {
+        if ($string == "N/A") {
+            return " and there are no Co-Requisite papers.";
+        } else {
+            return " and it has one Co-Requisite, ".$string.".";
+        }
+    }
+
     function processLecturer($string) {
         if ($string == "N/A") {
             return null;
@@ -72,8 +80,11 @@
                     $dbres->closeCursor();
 
                     $presText = processPres($pPres);
-                    
-                    $text = $pName . " is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. ".$presText. processLecturer($pTutor);
+                    $coText = processCos($pCos);
+                    $lectText = processLecturer($pTutor);
+
+                    $text = $pName . " is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. "
+                                        .$presText.$coText.$lectText;
 
                     
 

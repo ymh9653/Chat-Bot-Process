@@ -95,40 +95,41 @@
                         case "Software Development" :
                             $dbMajor = "software-development";
                             $text = "Do you love to code? Do you want to design and develop new software?"
-                            ."Then you shouldn't look any further than majoring in Software Development!"
+                            ."Then you shouldn't look any further than majoring in Software Development!";
                             break;
                         case "IT Service Science" :
                             $dbMajor = "it-service-science";
                             $text = "If you want to help the world by producing solutions for Information "
                             ."Technology, then IT Service Science just might be the place for you. You should "
-                            ."give it a look and learn about analysing, designing and implementing solutions for everyone!"
+                            ."give it a look and learn about analysing, designing and implementing solutions for everyone!";
                             break;
                         case "Computer Science" :
                             $dbMajor = "computer-science";
                             $text = "I've heard that the Computer Science major is pretty cool for solving problems "
-                            ."and learning new technologies!"
+                            ."and learning new technologies!";
                             break;
                         case "Analytics" :                                
                             $dbMajor = "analytics";
                             $text = "Analytics is essential for today's business environment and studying "
                             ."it will give you cool new skills in handling sophisticated predictive modelling "
-                            ."and quantitative and statistical analysis!"
+                            ."and quantitative and statistical analysis!";
                             break;
                         case "Computational Intelligence" :                            
                             $dbMajor = "computational-intelligence";
                             $text = "Computational Intelligence is all about information and how we use it! "
-                            ."If you have an interest for data, then I recommend you give this major a look!"
+                            ."If you have an interest for data, then I recommend you give this major a look!";
                             break;
                         case "Networks and Security" :                               
                             $dbMajor = "networks-and-security";
                             $text = "Are you intrigued by the concepts of Networking and Security? Then you ".
                             ."should take part in helping build the network infrastructure and security levels ".
-                            ."of our world!"
+                            ."of our world!";
                             break;
                     }
 
                     $text .= " Click here to learn more about it: https://www.aut.ac.nz/study/study-options/engineering-computer-and-mathematical-sciences/courses/"
                     ."bachelor-of-computer-and-information-sciences/".$dbMajor."-major"
+
                     $query = "SELECT * FROM papers WHERE \"$dbMajor\" = true";
                     $dbres = $db->query($query);
 

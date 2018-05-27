@@ -121,7 +121,7 @@
                         array_push($pName, $row["papercode"]);
                         array_push($pCode, $row["papername"]);
                     }
-
+                    echo $pName;
                     $dbres->closeCursor();
 
                     $text = "";

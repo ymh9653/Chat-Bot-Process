@@ -4,12 +4,10 @@
             $presText = "It does not have any Pre-Requisite Papers";
         } else {
             if (substr($string, 0, 1) == "(") {
-                    //Event: $pPres2
 
                     $opPre1 = substr($string, 1, 7);
                     $opPre2 = substr($string, 12, 7);
 
-                    // Event: pPres1
                     if (strLen($string) > 20) {
                             if (substr($string, 19, 1) == ")") {
                                     $opPre3 = substr($string, 22, 7);
@@ -25,7 +23,7 @@
             } else {
                     $opPre1 = substr($string, 0, 7);
                     if (substr($string, 7, 1) == ",") {
-                            $opPre2 = substr($string, 10, 7); 
+                            $opPre2 = substr($string, 9, 7); 
                             $presText = "The PreReqs for this paper are ".$opPre1." and ".$opPre2;
                     } else {
                             $presText = "The only PreReq for this paper is ".$opPre1;
@@ -66,7 +64,7 @@
 
                     $presText = processPres($pPres);
                     
-                    $text = $pName . "is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. ".$presText ;
+                    $text = $pName . " is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. ".$presText ;
 
                 } else if ($request["queryResult"]["action"] == "DBPaper" ) {
                     $papercode = $request["queryResult"]["parameters"]["paper1"];
@@ -88,10 +86,10 @@
 
                     $presText = processPres($pPres);
                     
-                    $text = $pName . "is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. ".$presText;
+                    $text = $pName . " is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. ".$presText;
 
                 } else if ($request["queryResult"]["action"] == "DBMajor") {
-                    $major = $request["queryResult"]["parameters"]["major1"];
+                    $major = $request["queryResult"]["parameters"]["Major1"];
 
                     switch ($major) {
                         case "Software Development" :

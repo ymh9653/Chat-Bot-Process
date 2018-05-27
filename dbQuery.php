@@ -92,7 +92,7 @@
                     $major = $request["queryResult"]["parameters"]["Major1"];
 
                     switch ($major) {
-                        case "Software development" :
+                        case "Software Development" :
                             $dbMajor = "isSD";
                             break;
                         case "IT Service Science" :
@@ -107,7 +107,7 @@
                         case "Computational Intelligence" :                               
                             $dbMajor = "isCI";
                             break;
-                        case "Networds and Security" :                               
+                        case "Networks and Security" :                               
                             $dbMajor = "isNS";
                             break;
                     }
@@ -119,8 +119,8 @@
                     $pCode = array();
 
                     while ($row = $dbres->fetch(PDO::FETCH_ASSOC)) {
-                        array_push($pName, $row["papercode"]);
-                        array_push($pCode, $row["papername"]);
+                        array_push($pCode, $row["papercode"]);
+                        array_push($pName, $row["papername"]);
                     }
                     console.log($pName);
                     $dbres->closeCursor();
@@ -128,7 +128,7 @@
                     $text = "";
                     for($x = 0; $x < sizeof($pName); $x++) {
                         $text .= $pCode[$x] . " ";
-                        $text .= $pName[$x] . " \n";
+                        $text .= $pName[$x] . " </br>";
                     }
                 }
 

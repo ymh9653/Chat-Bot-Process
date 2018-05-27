@@ -1,4 +1,41 @@
 <?php
+    function processPres($string) {
+        if ($string == "N/A") {
+            $presText = "It does not have any Pre-Requisite Papers";
+        } else {
+            if (substr($string, 0, 1) == "(") {
+                    //Event: $pPres2
+
+                    $opPre1 = substr($string, 1, 7);
+                    $opPre2 = substr($string, 12, 7);
+
+                    // Event: pPres1
+                    if (strLen($string) > 20) {
+                            if (substr($string, 19, 1) == ")") {
+                                    $opPre3 = substr($string, 22, 7);
+                                    $presText = "The PreReqs of the paper are one of ".$opPre1." or ". $opPre2.", and ".$opPre3;
+                            } else {
+                                    $opPre3 = substr($string, 23, 7);
+                                    $presText = "The PreReqs of the paper either one of ".$opPre1.", ". $opPre2." or ".$opPre3;
+                            }
+
+                    } else {
+                            $presText = "The PreReq of the paper are either ".$opPre1." or ".$opPre2;
+                    }
+            } else {
+                    $opPre1 = substr($string, 0, 7);
+                    if (substr($string, 7, 1) == ",") {
+                            $opPre2 = substr($string, 10, 7); 
+                            $presText = "The PreReqs for this paper are ".$opPre1." and ".$opPre2;
+                    } else {
+                            $presText = "The only PreReq for this paper is ".$opPre1;
+                    }
+            }           
+        } 
+
+        return $presText;
+    }
+
     function processMessage($request) {         
             $dbString = "pgsql:"
                         . "host=ec2-54-235-66-24.compute-1.amazonaws.com;"
@@ -22,35 +59,98 @@
                         $pName = $row["papername"];
                         $pPoints = $row["paperpoints"];
                         $pCos = $row["papercos"];
-                        $pPres = $row["paperpros"];
+                        $pPres = $row["paperpres"];
                     }
 
                     $dbres->closeCursor();
 
-                    $speech = $pName . ", worth " . $pPoints . " points";
-                    $text = $pName . ", worth " . $pPoints . " points";
+                    $presText = processPres($pPres);
+                    
+                    $text = $pName . "is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. ".$presText ;
 
-                    $response = new \stdClass();
-                    $response->fulfillmentText = $text;
-                    $response->source = $update["queryResult"]["source"];
-                    sendMessage($response);
-                    // sendMessage( array (
-                    //     "source" => $update["queryResult"]["source"],
-                    //     "speech" => $pName . ", worth " . $pPoints . " points",
-                    //     "displayText" => $pName . ", worth " . $pPoints . " points",
-                    //     "contextOut" => array()
-                    // ) );
+                } else if ($request["queryResult"]["action"] == "DBPaper" ) {
+                    $papercode = $request["queryResult"]["parameters"]["paper1"];
+                    
+                    $query = "SELECT * FROM papers WHERE papername LIKE '%$papername'";
+                    $dbres = $db->query($query);
+
+                    $pLevel = $pCode = $pName = $pPoints = $pCos = $pPres = "default";
+                    while ($row = $dbres->fetch(PDO::FETCH_ASSOC)) {
+                        $pLevel = $row["paperlevel"];
+                        $pCode = $row["papercode"];
+                        $pName = $row["papername"];
+                        $pPoints = $row["paperpoints"];
+                        $pCos = $row["papercos"];
+                        $pPres = $row["paperpres"];
+                    }
+
+                    $dbres->closeCursor();
+
+                    $presText = processPres($pPres);
+                    
+                    $text = $pName . "is a Level ". $pLevel . " Paper, that is worth " . $pPoints . " points. ".$presText ;
+
+                } else if ($request["queryResult"]["action"] == "DBMajor") {
+                    $major = $request["queryResult"]["parameters"]["major1"];
+
+                    switch ($major) {
+                        case "Software Development" :
+                            $dbMajor = "isSD"
+                            break;
+                        case "IT Service Science" :
+                            $dbMajor = "isITSS"
+                            break;
+                        case "Computer Science" :
+                            $dbMajor = "isCS"
+                            break;
+                        case "Analytics" :                                
+                            $dbMajor = "isAL"
+                            break;
+                        case "Computational Intelligence" :                               
+                            $dbMajor = "isCI"
+                            break;
+                        case "Networds and Security" :                               
+                            $dbMajor = "isNS"
+                            break;
+                    }
+
+                    $query = "SELECT * FROM papers WHERE '$dbMajor' = TRUE";
+
+                    $pName = array();
+                    $pCode = array();
+
+                    while ($row = $dbres->fetch(PDO::FETCH_ASSOC)) {
+                        array_push($pName, $row["papercode"]);
+                        array_push($pCode, $row["papername"]);
+                    }
+
+                    $dbres->closeCursor();
+
+                    $text = "";
+                    for($x = 0; $x < sizeof($pName); $x++) {
+                        $text .= $pCode[$x] . " ";
+                        $text .= $pName[$x] . " <br>";
+                    }
                 }
-            }
+
+
+
+                $response = new \stdClass();
+                $response->fulfillmentText = $text;
+                $response->source = $update["queryResult"]["source"];
+                sendMessage($response);
+
+                
+
+    }
         
-        function sendMessage($parameters) {
-            echo json_encode($parameters);
-        }
-        
-        $request_response = file_get_contents("php://input");
-        $request = json_decode($request_response, true);
-        if (isset($request["queryResult"]["action"])) {
-            processMessage($request);
-        }
+    function sendMessage($parameters) {
+        echo json_encode($parameters);
+    }
     
+    $request_response = file_get_contents("php://input");
+    $request = json_decode($request_response, true);
+    if (isset($request["queryResult"]["action"])) {
+        processMessage($request);
+    }
 ?>
